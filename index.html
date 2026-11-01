@@ -145,12 +145,12 @@ footer{margin-top:40px;color:var(--muted);font-size:.85rem}
   <div>
     <p class="dates">2026.12.12 — 12.21 · 10 天 9 晚</p>
     <h1>从乐园一路向南，<br>开到美国大陆的尽头</h1>
-    <p class="route">Boston → Orlando → Everglades → Biscayne → Key Largo → Key West → Miami → Boston</p>
+    <p class="route">Boston → Orlando → Everglades → Biscayne → Key Largo → Key West → Miami → Fort Lauderdale → Boston</p>
     <ul class="facts">
       <li><b>2</b> 个国家公园</li>
       <li><b>5</b> 个落脚点</li>
       <li><b>~10h</b> 自驾</li>
-      <li><b>12</b> 项待预订</li>
+      <li><b>8</b> / 12 项已订</li>
     </ul>
   </div>
   <div class="mapbox">
@@ -219,7 +219,7 @@ footer{margin-top:40px;color:var(--muted);font-size:.85rem}
   <div class="stays" id="stays"></div>
   <div class="tblwrap">
   <table class="tbl">
-    <thead><tr><th>地点</th><th>入住</th><th>退房</th><th>晚数</th></tr></thead>
+    <thead><tr><th>地点</th><th>酒店</th><th>入住</th><th>退房</th><th>晚数</th><th>免费取消截止</th></tr></thead>
     <tbody id="stbody"></tbody>
   </table>
   </div>
@@ -240,7 +240,7 @@ footer{margin-top:40px;color:var(--muted);font-size:.85rem}
       <h3>开车</h3>
       <ul>
         <li>Turnpike 和 Miami 一带基本是电子收费，取车时问清租车公司的 toll 方案（按天收费还是按次）。</li>
-        <li>Orlando 取、MIA 还属于异地还车，比较几家的 one-way fee。</li>
+        <li>已订：Orlando Rosen Centre 取车（12/15 09:30），Fort Lauderdale 机场 FLL 还车（12/21）。取车点周二只营业 8:00–17:00。</li>
         <li>整趟只有 Everglades 收门票（按车），不必为这次旅行专门买国家公园年票。</li>
         <li>Key West 和 Miami Beach 停车都难且贵，订酒店时确认是否含停车。</li>
         <li>US-1 跨海段限速低、常有测速，预留余量。</li>
@@ -257,7 +257,7 @@ footer{margin-top:40px;color:var(--muted);font-size:.85rem}
     <div class="card">
       <h3>可以加进去的小站</h3>
       <ul>
-        <li>Robert Is Here（Homestead 水果摊，奶昔有名），D4 或 D5 傍晚顺路。</li>
+        <li>Robert Is Here（Homestead 水果摊，奶昔有名），D4 或 D5 傍晚顺路，离 Floridian Hotel 很近。</li>
         <li>Turtle Hospital（Marathon）：已排进 D9 14:00。</li>
         <li>Robbie's（Islamorada），码头喂大海鲢。</li>
         <li>12 月正值石蟹季，Keys 和 Miami 都能吃到；Key lime pie 别错过。</li>
@@ -276,6 +276,7 @@ const NODES = {
   evg:{x:250,y:316,label:"Everglades",lx:-86,ly:4},
   bis:{x:340,y:300,label:"Biscayne",lx:12,ly:4},
   mia:{x:338,y:262,label:"Miami",lx:12,ly:4},
+  fll:{x:344,y:222,label:"Fort Lauderdale",lx:-112,ly:4},
   kl:{x:318,y:360,label:"Key Largo",lx:14,ly:6},
   isl:{x:276,y:402,label:"Islamorada",lx:6,ly:18},
   mar:{x:214,y:424,label:"Marathon",lx:-10,ly:-14},
@@ -283,69 +284,69 @@ const NODES = {
   kw:{x:120,y:436,label:"Key West",lx:-30,ly:-14}
 };
 const SEGS = [
-  ["orl","hst"],["hst","evg"],["hst","bis"],["bis","kl"],["kl","isl"],["isl","mar"],["mar","bpk"],["bpk","kw"],["kl","mia"]
+  ["orl","hst"],["hst","evg"],["hst","bis"],["bis","kl"],["kl","isl"],["isl","mar"],["mar","bpk"],["bpk","kw"],["kl","mia"],["mia","fll"]
 ];
 const DAYS = [
  {n:1,date:"12/12",wk:"周六",place:"Orlando",title:"飞抵 Orlando，轻松适应",
-  sched:[["07:00", "Boston 出发（BOS → MCO）", "早班直飞约 2.5–3 小时，落地后时间最充裕。"], ["中午", "抵达 MCO，Uber 到酒店约 25–40 min", "出到达层后跟着 Ground Transportation / Ride Share 的指示牌找上车点。"], ["13:00", "入住 / 寄存行李", "房间没准备好就先寄存，轻装出门。"], ["15:00+", "Universal CityWalk，或用特价 3 天票先进园", "CityWalk 就在两个乐园门口，餐厅、酒吧、纪念品店集中，免门票，顺便熟悉明后天的进园路线。如果买的是特价 3 天票，今天就能用掉一个两园日：下午进 IOA 或 Studios 先玩几个项目，晚上看霍格沃茨城堡的圣诞投影，把 D3 的压力分掉一部分。"]],
-  stay:"Orlando",trans:"BOS → MCO；机场到酒店 Uber 约 25–40 min",book:["BOS→MCO 机票","Orlando 酒店","乐园票（特价 3 天票可含今天）"],
+  sched:[["09:00", "到 Boston Logan 机场", "Frontier 柜台托运截止通常是起飞前 45 分钟，提前 2 小时到比较稳。"], ["11:08", "BOS → MCO · Frontier F9 1977", "直飞 3h44m，14:52 到 Orlando。"], ["14:52", "抵达 MCO，Uber 到酒店约 25–40 min", "出到达层后跟着 Ground Transportation / Ride Share 的指示牌找上车点。"], ["16:00", "入住 Hyatt House", "就在 Universal 对面，Studio Kitchen Suite 带小厨房，可以买点早餐和零食放房间。"], ["17:00+", "Universal CityWalk 晚饭", "CityWalk 就在两个乐园门口，餐厅、酒吧、纪念品店集中，免门票，顺便熟悉明后天的进园路线。如果买的是特价 3 天票，也可以傍晚进 IOA 看霍格沃茨城堡的圣诞投影。"]],
+  stay:"Hyatt House across from Universal · 5940 Caravan Ct",trans:"F9 1977 BOS 11:08 → MCO 14:52；机场到酒店 Uber 约 20–30 min",book:["✓ BOS→MCO 机票","✓ Orlando 酒店","乐园票"],
   nodes:["orl"],segs:[],
   links:[["Universal CityWalk", "https://www.universalorlando.com"], ["Disney Springs", "https://www.disneysprings.com"]],
-  tips:["今天进园的话，适合挑 D3 想重复玩或排队不长的项目，别熬太晚，明天 Epic 要早起。","不进园就逛 CityWalk 吃个晚饭，早点休息。"]},
+  tips:["Frontier 基础票只含一个塞进座位底下的小包，登机箱和托运都要另付费，提前在网上加购比机场便宜。","起飞前 24 小时开放网上值机（Frontier 机场柜台打印登机牌要收费）。","下午才到，今天用掉一个乐园日不太划算，逛 CityWalk 吃个晚饭，早点休息，明天 Epic 要早起。"]},
  {n:2,date:"12/13",wk:"周日",place:"Epic Universe",title:"Epic Universe 全天",
-  sched:[["06:30", "起床", ""], ["开园前", "提前 45–60 min 到园", "住 Universal 园区酒店的话，看能否用提前入园。"], ["开园", "直奔 Ministry of Magic", "Harry Potter and the Battle at the Ministry 通常是全园排队最长的项目，开园第一个就去。这一区是 1920 年代的巴黎魔法世界，玩完顺便喝一杯黄油啤酒。"], ["上午", "Super Nintendo World", "先买个 Power-Up Band 绑定 App，区内到处是可以敲的问号砖和小游戏。主项目是 Mario Kart: Bowser's Challenge，还有 Donkey Kong 的 Mine-Cart Madness 和适合放松的 Yoshi's Adventure。"], ["午饭", "园内用餐", "热门主题餐厅可能要在 App 里排位，进园后先看一下。"], ["下午", "Dark Universe + Isle of Berk", "Dark Universe 是环球经典怪物主题，主项目 Monsters Unchained: The Frankenstein Experiment，旁边还有一个狼人主题的旋转过山车。How to Train Your Dragon 的博克岛风格明亮，有 Hiccup's Wing Gliders 过山车、驯龙主题的演出，还能见到无牙仔。"], ["天黑后", "Celestial Park 夜景 + Stardust Racers", "中央的 Celestial Park 晚上灯光最好看，双轨对飙的 Stardust Racers 留到这时坐。有体力就回头补一轮白天排队太长的项目，晚间人通常会少一些。"]],
-  stay:"Orlando",trans:"Uber / 酒店接驳",book:["Epic Universe 门票"],
+  sched:[["06:30", "起床", ""], ["开园前", "提前 45–60 min 到园", "Hyatt House 不是 Universal 官方酒店，没有提前入园，就早点到门口排队。"], ["开园", "直奔 Ministry of Magic", "Harry Potter and the Battle at the Ministry 通常是全园排队最长的项目，开园第一个就去。这一区是 1920 年代的巴黎魔法世界，玩完顺便喝一杯黄油啤酒。"], ["上午", "Super Nintendo World", "先买个 Power-Up Band 绑定 App，区内到处是可以敲的问号砖和小游戏。主项目是 Mario Kart: Bowser's Challenge，还有 Donkey Kong 的 Mine-Cart Madness 和适合放松的 Yoshi's Adventure。"], ["午饭", "园内用餐", "热门主题餐厅可能要在 App 里排位，进园后先看一下。"], ["下午", "Dark Universe + Isle of Berk", "Dark Universe 是环球经典怪物主题，主项目 Monsters Unchained: The Frankenstein Experiment，旁边还有一个狼人主题的旋转过山车。How to Train Your Dragon 的博克岛风格明亮，有 Hiccup's Wing Gliders 过山车、驯龙主题的演出，还能见到无牙仔。"], ["天黑后", "Celestial Park 夜景 + Stardust Racers", "中央的 Celestial Park 晚上灯光最好看，双轨对飙的 Stardust Racers 留到这时坐。有体力就回头补一轮白天排队太长的项目，晚间人通常会少一些。"]],
+  stay:"Hyatt House across from Universal",trans:"步行或 Uber 去园区",book:["Epic Universe 门票"],
   nodes:["orl"],segs:[],
   links:[["Universal Orlando（Epic Universe 门票）", "https://www.universalorlando.com"]],
   tips:["今天只在 Epic，不能跨园，也坐不了 Hogwarts Express；票里的 Epic 日就用在这一天。", "高级酒店送的 Express Unlimited 不适用于 Epic，Epic 的 Express 要另外买、价格较高。", "过山车类项目一般要先把包存进免费储物柜，带个小斜挎包会方便很多。"]},
  {n:3,date:"12/14",wk:"周一",place:"Universal 两园",title:"Islands of Adventure + Universal Studios 两园",
   sched:[["06:30", "起床", ""], ["开园前", "到 Islands of Adventure", "两园那天先去 IOA，因为这边有两个最热门的过山车。"], ["开园", "Hagrid's → VelociCoaster", "Hagrid's Magical Creatures Motorbike Adventure 是哈利波特区最受欢迎的过山车，开园先冲它；接着去侏罗纪区的 VelociCoaster，是全园最刺激的一个。"], ["上午", "Hogsmeade + Marvel 区", "在霍格沃茨城堡里坐 Forbidden Journey；Marvel 区有 Incredible Hulk 过山车和 Spider-Man。时间够的话去 Skull Island 坐金刚。"], ["午饭", "Three Broomsticks（三把扫帚）", "霍格莫德村里的英式餐厅，配一杯黄油啤酒。"], ["下午", "坐 Hogwarts Express 去 Universal Studios", "从 Hogsmeade 站上车，到 Studios 的国王十字车站，两个方向车窗外的剧情不一样，需要 park-to-park 票。下车穿过伦敦街景的砖墙就是对角巷。"], ["下午", "对角巷 + Studios 其他项目", "对角巷的主项目是 Escape from Gringotts（古灵阁），火龙在银行楼顶会定时喷火；可以去奥利凡德买互动魔杖，在两园的哈利波特区对着橱窗施咒。之后按兴趣挑 Revenge of the Mummy、Transformers、Simpsons Ride、Minion Mayhem。"], ["晚上", "节日活动或补项目", "12 月是 Universal Holidays 期间，通常有节日游行、Seuss Landing 的 Grinchmas，以及霍格沃茨城堡上的圣诞投影秀。城堡投影在 IOA，想看的话晚上要回到 IOA，具体场次以官网和 App 为准。"]],
-  stay:"Orlando",trans:"Uber / 酒店接驳",book:["两园 park-to-park 门票"],
+  stay:"Hyatt House across from Universal",trans:"步行或 Uber 去园区",book:["两园 park-to-park 门票"],
   nodes:["orl"],segs:[],
   links:[["Universal Orlando 门票", "https://www.universalorlando.com"]],
-  tips:["Hogwarts Express 用 park-to-park 票不限次数，两个方向剧情不同，建议去程、回程各坐一次。", "两园都有 single rider 通道（VelociCoaster、Hulk、Forbidden Journey、Gringotts、Mummy 等），愿意分开坐能省下大量时间。", "住 Hard Rock、Portofino Bay 或 Royal Pacific 的话，房卡在入住期间就是两园的 Express Unlimited；单买每人每天约 $115–380 不等。注意 Hagrid's 不能用 Express，还是要开园冲。", "12 月早上偏凉，侏罗纪公园漂流这类会湿透的项目放到中午最暖时，或者干脆跳过。"]},
+  tips:["Hogwarts Express 用 park-to-park 票不限次数，两个方向剧情不同，建议去程、回程各坐一次。", "两园都有 single rider 通道（VelociCoaster、Hulk、Forbidden Journey、Gringotts、Mummy 等），愿意分开坐能省下大量时间。", "Hyatt House 不送 Express，排队多的话可以考虑单买，每人每天约 $115–380 不等；Hagrid's 不能用 Express，还是要开园冲。", "12 月早上偏凉，侏罗纪公园漂流这类会湿透的项目放到中午最暖时，或者干脆跳过。"]},
  {n:4,date:"12/15",wk:"周二",place:"→ Homestead",title:"转场南下，约 4 小时车程",
-  sched:[["08:00", "起床", ""], ["09:00", "退房", ""], ["09:30", "取车（Orlando 取，MIA 还）", "绕车一圈拍照留证，确认收费公路方案和 MIA 异地还车。"], ["10:00", "出发", "走 Florida's Turnpike 一路南下，沿途有服务区可以加油、吃午饭、休息。"], ["14:30", "抵达 Homestead", ""], ["下午", "采购水、零食、防晒、驱蚊，早点休息", "去附近超市一次买齐接下来几天的补给，Everglades 里几乎没有地方买东西。傍晚可以去 Robert Is Here 水果摊，点一杯热带水果奶昔。"]],
-  stay:"Homestead",trans:"Orlando 取车 → Homestead，约 4h",book:["异地租车","Homestead 酒店"],
+  sched:[["08:00", "起床", ""], ["08:45", "退房，Uber 去 Rosen Centre", "取车点在 Rosen Centre 酒店 1 楼（9840 International Dr），从 Universal 一带过去约 15–20 min。"], ["09:30", "取车（Orlando 取，FLL 还）", "绕车一圈拍照留证，确认收费公路方案和 Fort Lauderdale 机场异地还车。"], ["10:00", "出发", "走 Florida's Turnpike 一路南下，沿途有服务区可以加油、吃午饭、休息。"], ["14:30", "抵达 Homestead", ""], ["15:00", "入住 Floridian Hotel", "990 N Homestead Blvd，15:00 后可入住。"], ["下午", "采购水、零食、防晒、驱蚊，早点休息", "去附近超市一次买齐接下来几天的补给，Everglades 里几乎没有地方买东西。傍晚可以去 Robert Is Here 水果摊，点一杯热带水果奶昔。"]],
+  stay:"Floridian Hotel · Homestead（15:00 后入住）",trans:"Rosen Centre 取车 → Homestead，约 4h",book:["✓ 异地租车","✓ Homestead 酒店"],
   nodes:["orl","hst"],segs:[[0]],
-  links:[["Robert Is Here（地图）", "https://www.google.com/maps/search/?api=1&query=Robert+Is+Here+Fruit+Stand+Homestead+FL"]],
-  tips:["取车时确认收费公路方案，Turnpike 几乎全程电子收费。","傍晚可以去 Robert Is Here 水果摊喝杯奶昔，离酒店很近。"]},
+  links:[["取车点：Rosen Centre（地图）", "https://www.google.com/maps/search/?api=1&query=Rosen+Centre+9840+International+Drive+Orlando+FL"], ["Floridian Hotel（地图）", "https://www.google.com/maps/search/?api=1&query=Floridian+Hotel+990+N+Homestead+Blvd+Homestead+FL"], ["Robert Is Here（地图）", "https://www.google.com/maps/search/?api=1&query=Robert+Is+Here+Fruit+Stand+Homestead+FL"]],
+  tips:["取车点周二营业 8:00–17:00，租车公司会在取车前 24 小时邮件或短信确认。","取车时确认收费公路方案，Turnpike 几乎全程电子收费。","傍晚可以去 Robert Is Here 水果摊喝杯奶昔，离酒店很近。"]},
  {n:5,date:"12/16",wk:"周三",place:"Everglades",title:"Everglades 国家公园",
   sched:[["07:30", "出发", "先在主入口附近的 Ernest F. Coe 游客中心拿地图、看当天的 ranger 活动。"], ["08:00", "Anhinga Trail（清晨动物最多）", "在 Royal Palm 区，一圈约 1.3 公里的步道和木栈道，旱季鳄鱼、苍鹭、蛇鹈（anhinga）都集中在水边，几乎一定能看到鳄鱼。停车场的秃鹫有啄车胶条的习惯，园方会提供防护布，记得盖上。"], ["10:15", "沿主路的短 trail", "往 Flamingo 方向开，沿途几个短步道各有特色：Pa-hay-okee Overlook 的观景台能看到一望无际的锯齿草“草之河”；Mahogany Hammock 的木栈道穿过一片热带硬木林；每个停 20–40 分钟就够。"], ["14:15", "Flamingo", "公路的尽头，面向 Florida Bay。码头附近常能看到海牛和美洲鳄（鳄鱼的近亲，嘴更尖）。想多玩一点可以坐游船或租皮划艇进红树林水道。"], ["18:00", "回 Homestead", "天黑前出园，路上野生动物多，开慢一点。"]],
-  stay:"Homestead",trans:"Homestead → 主入口约 30–40 min；公园内分段驾驶",book:["Everglades 门票"],
+  stay:"Floridian Hotel · Homestead",trans:"Homestead → 主入口约 30–40 min；公园内分段驾驶",book:["Everglades 门票"],
   nodes:["hst","evg"],segs:[[1]],
   links:[["Everglades 国家公园（NPS）", "https://www.nps.gov/ever/"], ["Everglades 门票说明", "https://www.nps.gov/ever/planyourvisit/fees.htm"], ["Robert Is Here（地图）", "https://www.google.com/maps/search/?api=1&query=Robert+Is+Here+Fruit+Stand+Homestead+FL"]],
   tips:["12 月是旱季，动物集中在水塘边，蚊子也少，是看鳄鱼和水鸟的最佳季节。","Flamingo 一带有机会看到海牛和美洲鳄，可以考虑在那里租皮划艇或坐游船。","主路到 Flamingo 单程约 1 小时，回程别太晚，天 17:30 左右就黑了。"]},
  {n:6,date:"12/17",wk:"周四",place:"Biscayne → Key Largo",title:"Biscayne 出海，傍晚到 Key Largo",
-  sched:[["08:30","出发，导航 Dante Fascell Visitor Center"],["09:00","到达，停游客中心停车场；check-in、租湿衣"],["10:00","BNPI 浮潜团出海（约 3–4h）"],["14:00","回到码头，Convoy Point 栈道走走"],["15:00","出发去 Key Largo"],["16:00","抵达 Key Largo"]],
-  stay:"Key Largo",trans:"Homestead → Biscayne 约 20–30 min（9700 SW 328th St，游客中心停车场）；Biscayne → Key Largo 约 45–60 min",book:["Biscayne 浮潜团（BNPI）","Key Largo 酒店"],
+  sched:[["08:30","出发，导航 Dante Fascell Visitor Center"],["09:00","到达，停游客中心停车场；check-in、租湿衣"],["10:00","BNPI 浮潜团出海（约 3–4h）"],["14:00","回到码头，Convoy Point 栈道走走"],["15:00","出发去 Key Largo"],["16:00","抵达 Key Largo，入住 Marina del Mar","527 Caribbean Dr，15:00 后可入住。"]],
+  stay:"Marina del Mar Resort & Marina · Key Largo（15:00 后入住）",trans:"早上 08:30 前从 Floridian Hotel 退房；Homestead → Biscayne 约 20–30 min（9700 SW 328th St，游客中心停车场）；Biscayne → Key Largo 约 45–60 min",book:["Biscayne 浮潜团（BNPI）","✓ Key Largo 酒店"],
   nodes:["hst","bis","kl"],segs:[[2],[3]],
   links:[["BNPI 浮潜团预订", "https://biscaynenationalparkinstitute.org"], ["Biscayne 国家公园（NPS）", "https://www.nps.gov/bisc/"], ["导航：Dante Fascell Visitor Center", "https://www.google.com/maps/search/?api=1&query=Dante+Fascell+Visitor+Center+9700+SW+328th+St+Homestead+FL"]],
   tips:["车停 Dante Fascell Visitor Center（Convoy Point）的停车场；隔壁的 Homestead Bayfront Park 是另一个县立公园，别开错。","入园免费，国家公园年票在这里用不上。出海必须跟 Biscayne National Park Institute（BNPI）的团，买的是团费，没有单独船票。","选从 Convoy Point 出发、3–4 小时的浮潜团；部分团（如 Stiltsville、Boca Chita）从 Coconut Grove 的 Dinner Key 出发，订时确认码头。","冬季冷锋来时常因风浪取消，订前问清退款政策；短款湿衣现场可租，约 $10。","如果预报显示 D6 风大、D7 好，可以和潜水日对调。"]},
  {n:7,date:"12/18",wk:"周五",place:"Key Largo 潜水",title:"Key Largo 珊瑚礁潜水",
   sched:[["06:30", "起床", ""], ["07:30", "潜店报到", "填免责表、试装备、听简报；有证的带上潜水证和 log。"], ["08:30", "出船（two-tank / Discover Scuba）", "Key Largo 外海的珊瑚礁属于国家海洋保护区，常去的有 Molasses Reef、French Reef 等浅礁，以及水下“深渊基督像”所在的 Key Largo Dry Rocks。two-tank 一般是两个点各潜一次；Discover Scuba 会先在浅水教学，再由教练带着下潜。"], ["13:00", "返回", ""], ["下午", "休息", "可以去 John Pennekamp 州立公园走走红树林步道，或者干脆午睡，后面两天都要早起开车。"]],
-  stay:"Key Largo",trans:"当地短途",book:["潜水课程或 two-tank dive"],
+  stay:"Marina del Mar Resort & Marina · Key Largo",trans:"当地短途",book:["潜水课程或 two-tank dive"],
   nodes:["kl"],segs:[],
-  links:[["John Pennekamp 州立公园", "https://www.floridastateparks.org/parks-and-trails/john-pennekamp-coral-reef-state-park"], ["PADI（查潜店）", "https://www.padi.com"]],
+  links:[["Marina del Mar（地图）", "https://www.google.com/maps/search/?api=1&query=Marina+del+Mar+Resort+527+Caribbean+Drive+Key+Largo+FL"],["John Pennekamp 州立公园", "https://www.floridastateparks.org/parks-and-trails/john-pennekamp-coral-reef-state-park"], ["PADI（查潜店）", "https://www.padi.com"]],
   tips:["有证的带上潜水证和 log；Discover Scuba 需要先填健康问卷。","潜水后 18 小时内不要坐飞机，你们 3 天后才飞，完全没问题。","下午可以去 John Pennekamp 州立公园散步，或干脆休息，后面两天都很早起。"]},
  {n:8,date:"12/19",wk:"周六",place:"Keys 公路",title:"Overseas Highway 一路开到 Key West",
-  sched:[["08:30", "Key Largo 出发", "沿 US-1 一路向南。路边的绿色 Mile Marker（MM）小牌子就是 Keys 的“门牌号”，从 Key Largo 的 MM 100 左右一直数到 Key West 的 MM 0，后面找地方都靠它。"], ["09:30", "Islamorada", "主角是 Robbie's（MM 77.5）：在码头买一小桶鱼，蹲在栈桥边把鱼提在水面上，上百条一两米长的大海鲢会跳起来抢，记得抓紧别被拖下去。旁边有露天餐厅和纪念品摊，可以喝杯咖啡。时间宽裕可以再去 Anne's Beach（MM 73.5）的木栈道走走。"], ["11:15", "Marathon · 午饭", "Keys 中段最大的镇子，适合吃午饭。找一家码头海鲜店，12 月正好有石蟹，也可以试 conch fritters（海螺炸丸子）。Turtle Hospital 放在 D9 回程，今天先不进。"], ["12:30", "Seven Mile Bridge", "开过新桥约 10 分钟，全程不能停车，副驾负责拍照。旁边并行的是 1912 年的老铁路桥（Old Seven Mile Bridge）。想走一段老桥，可以在过桥前把车停在 Marathon 一端的 Pigeon Key 游客中心附近，上老桥步行一小段拍照，来回 30 分钟左右就够。"], ["13:30", "Bahia Honda 州立公园", "被评为 Keys 最好的天然海滩，入园按车收费。推荐三件事：沿着 Sandspur Beach 的白沙滩散步或下水；去 Calusa Beach 边的浅水区浮潜看小鱼；走上那段断掉的老铁路桥观景台，俯瞰整片蓝绿色海水，是全程最出片的地方。"], ["15:15", "离开 Bahia Honda", "到 Key West 约 45 分钟。经过 Big Pine Key 时限速变低，这一段是 Key deer 的栖息地，留意路边。"], ["16:00", "抵达 Key West，入住", "停好车后基本都靠走路，老城区很小。入住后简单休整，换双好走的鞋。"], ["17:40", "Mallory Square 日落，晚上 Duval Street", "日落前约 30 分钟到广场，抢个靠水边的位置。日落前后有街头艺人表演杂耍、走钢丝，是 Key West 的固定节目。天黑后沿 Duval Street 往南走，一路是酒吧和餐厅，晚饭后来一块 Key lime pie；Hemingway 当年常去的 Sloppy Joe's 也在这条街上。"]],
-  stay:"Key West",trans:"纯驾驶约 2h+，边玩边走约 7h",book:["Key West 酒店（1 晚）"],
+  sched:[["08:30", "退房，Key Largo 出发", "Marina del Mar 退房时间是 11:00，直接带着行李出发。沿 US-1 一路向南。路边的绿色 Mile Marker（MM）小牌子就是 Keys 的“门牌号”，从 Key Largo 的 MM 100 左右一直数到 Key West 的 MM 0，后面找地方都靠它。"], ["09:30", "Islamorada", "主角是 Robbie's（MM 77.5）：在码头买一小桶鱼，蹲在栈桥边把鱼提在水面上，上百条一两米长的大海鲢会跳起来抢，记得抓紧别被拖下去。旁边有露天餐厅和纪念品摊，可以喝杯咖啡。时间宽裕可以再去 Anne's Beach（MM 73.5）的木栈道走走。"], ["11:15", "Marathon · 午饭", "Keys 中段最大的镇子，适合吃午饭。找一家码头海鲜店，12 月正好有石蟹，也可以试 conch fritters（海螺炸丸子）。Turtle Hospital 放在 D9 回程，今天先不进。"], ["12:30", "Seven Mile Bridge", "开过新桥约 10 分钟，全程不能停车，副驾负责拍照。旁边并行的是 1912 年的老铁路桥（Old Seven Mile Bridge）。想走一段老桥，可以在过桥前把车停在 Marathon 一端的 Pigeon Key 游客中心附近，上老桥步行一小段拍照，来回 30 分钟左右就够。"], ["13:30", "Bahia Honda 州立公园", "被评为 Keys 最好的天然海滩，入园按车收费。推荐三件事：沿着 Sandspur Beach 的白沙滩散步或下水；去 Calusa Beach 边的浅水区浮潜看小鱼；走上那段断掉的老铁路桥观景台，俯瞰整片蓝绿色海水，是全程最出片的地方。"], ["15:15", "离开 Bahia Honda", "到 Key West 约 45 分钟。经过 Big Pine Key 时限速变低，这一段是 Key deer 的栖息地，留意路边。"], ["16:00", "抵达 Key West，入住 Hyatt Windward Pointe", "3675 S Roosevelt Blvd，在岛东侧海边，16:00 后可入住。离老城区约 10–15 min 车程，入住后简单休整，换双好走的鞋。"], ["17:40", "Mallory Square 日落，晚上 Duval Street", "老城停车难，建议从酒店叫 Uber 过去。日落前约 30 分钟到广场，抢个靠水边的位置。日落前后有街头艺人表演杂耍、走钢丝，是 Key West 的固定节目。天黑后沿 Duval Street 往南走，一路是酒吧和餐厅，晚饭后来一块 Key lime pie；Hemingway 当年常去的 Sloppy Joe's 也在这条街上。"]],
+  stay:"Hyatt Vacation Club at Windward Pointe · Key West（16:00 后入住）",trans:"纯驾驶约 2h+，边玩边走约 7h",book:["✓ Key West 酒店（1 晚）"],
   nodes:["kl","isl","mar","bpk","kw"],segs:[[4],[5],[6],[7]],
   links:[["Robbie's（地图）", "https://www.google.com/maps/search/?api=1&query=Robbie%27s+of+Islamorada+77522+Overseas+Hwy"], ["Bahia Honda 州立公园", "https://www.floridastateparks.org/parks-and-trails/bahia-honda-state-park"], ["Mallory Square（地图）", "https://www.google.com/maps/search/?api=1&query=Mallory+Square+Key+West"]],
-  tips:["出发时间提前到 08:30，16:00 左右到 Key West，停车入住后正好赶上约 17:40 的日落。","明天不用早起赶船了，晚上可以在 Duval Street 多待一会儿。"]},
+  tips:["出发时间提前到 08:30，16:00 左右到 Key West，正好赶上 Hyatt 16:00 的入住时间和约 17:40 的日落。","Hyatt 明早 10:00 就要退房，晚上别玩太晚。"]},
  {n:9,date:"12/20",wk:"周日",place:"Key West → Miami",title:"Key West 半日，北上 Miami",
-  sched:[["08:00", "起床，早餐", ""], ["09:00", "Hemingway 故居（看六趾猫）", "海明威在这里住了近十年，跟着讲解员走一圈约 30 分钟，能看到他的书房和泳池。院子里几十只猫有不少是六个脚趾，据说是他那只六趾猫的后代。"], ["10:30", "Southernmost Point 打卡，Duval Street 散步", "红黑黄三色的大浮标标着“美国本土最南端”，拍照常要排队，早点去。之后沿 Duval Street 和旁边的小街走走，看看彩色的老房子。"], ["11:00", "退房，午饭", ""], ["11:45", "出发北上", ""], ["12:30", "Big Pine Key 看 Key deer", "去 National Key Deer Refuge 的 Blue Hole：一个老采石坑形成的淡水池，常有鳄鱼和水鸟，附近也最容易遇到 Key deer。它们只有中型犬大小，别喂食。"], ["13:15", "继续北上，过 Seven Mile Bridge", ""], ["14:00", "Turtle Hospital 导览（约 90 min）", "先听讲解，再参观手术室和病房，最后看正在康复的海龟，还能喂常驻的“老病号”。"], ["15:30", "Marathon 出发去 Miami", "剩下约 2.5–3 小时车程。"], ["19:00", "抵达 Miami，入住", ""]],
-  stay:"Miami",trans:"Key West → Miami 纯驾驶约 3.5–4h，中途停 Big Pine Key、Marathon",book:["Turtle Hospital 导览（14:00 场）","Miami 酒店"],
+  sched:[["07:45", "起床，早餐", ""], ["09:15", "退房（Hyatt 10:00 截止），开车进老城", "行李放车上，把车停在 Hemingway 故居附近的收费停车位或停车场，上午就步行玩。"], ["09:30", "Hemingway 故居（看六趾猫）", "海明威在这里住了近十年，跟着讲解员走一圈约 30 分钟，能看到他的书房和泳池。院子里几十只猫有不少是六个脚趾，据说是他那只六趾猫的后代。"], ["10:30", "Southernmost Point 打卡，Duval Street 散步", "红黑黄三色的大浮标标着“美国本土最南端”，就在 Hemingway 故居旁边几个街区，拍照常要排队。之后沿 Duval Street 和旁边的小街走走，看看彩色的老房子。"], ["11:00", "午饭", ""], ["11:45", "出发北上", ""], ["12:30", "Big Pine Key 看 Key deer", "去 National Key Deer Refuge 的 Blue Hole：一个老采石坑形成的淡水池，常有鳄鱼和水鸟，附近也最容易遇到 Key deer。它们只有中型犬大小，别喂食。"], ["13:15", "继续北上，过 Seven Mile Bridge", ""], ["14:00", "Turtle Hospital 导览（约 90 min）", "先听讲解，再参观手术室和病房，最后看正在康复的海龟，还能喂常驻的“老病号”。"], ["15:30", "Marathon 出发去 Miami", "剩下约 2.5–3 小时车程。"], ["19:00", "抵达 Coral Gables，入住 Gables Inn", "730 S Dixie Hwy，在 Coral Gables，离 Vizcaya 约 15 min。"]],
+  stay:"Gables Inn · Coral Gables",trans:"Key West → Coral Gables 纯驾驶约 3.5–4h，中途停 Big Pine Key、Marathon",book:["Turtle Hospital 导览（14:00 场）","✓ Miami 酒店"],
   nodes:["kw","bpk","mar","isl","kl","mia"],segs:[[7],[6],[5],[4],[8]],
   links:[["Hemingway 故居", "https://www.hemingwayhome.com"], ["Turtle Hospital 导览预订", "https://www.turtlehospital.org"], ["National Key Deer Refuge", "https://www.fws.gov/refuge/national-key-deer"]],
-  tips:["Turtle Hospital 是海龟救助医院，导览整点出发，后面的医院区必须跟导览才能看，提前在官网订 14:00 场。","Key deer 只生活在 Big Pine Key 一带，National Key Deer Refuge 附近最容易看到；当地限速低、禁止投喂，开慢一点。","周日下午从 Keys 北上的车流较多，时间留宽一些。","Miami 酒店建议选 Brickell / Downtown 或 Coral Gables 一带，去 Vizcaya、Little Havana 和机场都方便；South Beach 停车费很贵。"]},
- {n:10,date:"12/21",wk:"周一",place:"Miami → Boston",title:"Miami 一日，晚班飞回 Boston",
-  sched:[["08:30", "退房（行李放车上）", ""], ["09:30", "Vizcaya 庄园与花园", "一位实业家在海边建的意大利文艺复兴风格别墅，室内房间保留了原貌，外面是面朝 Biscayne Bay 的法式和意式花园，逛 1.5–2 小时。"], ["12:00", "Little Havana · Calle Ocho 吃古巴菜", "沿 Calle Ocho（SW 8th St）走一段：在 ventanita（街边小窗口）点一杯古巴咖啡 cafecito，吃个古巴三明治；Domino Park 里常有老人下多米诺骨牌，街上还有雪茄店。"], ["14:00", "Wynwood Walls 涂鸦街区", "Wynwood Walls 园区内是收费的大型壁画展，周边几条街的墙面也都是免费看的涂鸦，咖啡店和潮牌店很多，适合边走边拍。"], ["16:00", "加油，MIA 还车", "还车点在 MIA Rental Car Center，还完坐 MIA Mover 轻轨到航站楼。"], ["17:00", "到航站楼", ""], ["19:00+", "MIA → BOS", ""]],
-  stay:"—",trans:"市内短途；MIA Rental Car Center 还车，坐 MIA Mover 到航站楼",book:["MIA→BOS 机票"],
-  nodes:["mia"],segs:[],
-  links:[["Vizcaya 门票", "https://vizcaya.org"], ["Wynwood Walls 门票", "https://thewynwoodwalls.com"], ["Little Havana · Calle Ocho（地图）", "https://www.google.com/maps/search/?api=1&query=Calle+Ocho+Little+Havana+Miami"]],
-  tips:["Vizcaya 和 Wynwood Walls 都要门票，出发前在官网确认当天开放时间。","想看小浣熊岛（Raccoon Island）的话，可以用上午约 3 小时的船游或划艇团替换 Vizcaya，船游会从海上经过 Vizcaya 等豪宅区。","不想去 Vizcaya 的话，可以换成 South Beach 的 Art Deco 街区和海滩。","12 月是石蟹季，午饭或在机场前都可以试试。","还车加上安检，至少给自己留 2.5 小时。"]}
+  tips:["Turtle Hospital 是海龟救助医院，导览整点出发，后面的医院区必须跟导览才能看，提前在官网订 14:00 场。","Key deer 只生活在 Big Pine Key 一带，National Key Deer Refuge 附近最容易看到；当地限速低、禁止投喂，开慢一点。","周日下午从 Keys 北上的车流较多，时间留宽一些。","Hyatt 退房早，车要停进老城，记得带零钱或用 ParkMobile App 付停车费。"]},
+ {n:10,date:"12/21",wk:"周一",place:"Miami → FLL → Boston",title:"Miami 半日，FLL 晚班经 JFK 飞回 Boston",
+  sched:[["08:30", "退房 Gables Inn（行李放车上）", ""], ["09:30", "Vizcaya 庄园与花园", "一位实业家在海边建的意大利文艺复兴风格别墅，室内房间保留了原貌，外面是面朝 Biscayne Bay 的法式和意式花园，逛 1.5–2 小时。"], ["12:00", "Little Havana · Calle Ocho 吃古巴菜", "沿 Calle Ocho（SW 8th St）走一段：在 ventanita（街边小窗口）点一杯古巴咖啡 cafecito，吃个古巴三明治；Domino Park 里常有老人下多米诺骨牌，街上还有雪茄店。"], ["13:30", "Wynwood Walls 涂鸦街区", "Wynwood Walls 园区内是收费的大型壁画展，周边几条街的墙面也都是免费看的涂鸦，咖啡店和潮牌店很多，适合边走边拍。Wynwood 在去 Fort Lauderdale 的路上，玩完直接上 I-95 北上。"], ["14:45", "出发去 FLL", "Wynwood → FLL 约 35–60 min，周一下午 I-95 容易堵。机场附近加满油。"], ["16:00", "FLL 还车", "Fort Lauderdale-Hollywood 机场 Rental Car Center（600 Terminal Dr），还完按指示去 Terminal 3。"], ["16:30", "到 Terminal 3，值机安检", "JetBlue 在 FLL 是 Terminal 3。"], ["18:40", "FLL → JFK · JetBlue 2202", "21:34 到 JFK。"], ["22:29", "JFK → BOS · JetBlue 1118", "JFK 转机约 55 min，两段都在 Terminal 5，不用换航站楼。23:47 到 Boston。"]],
+  stay:"—",trans:"Wynwood → FLL 约 35–60 min；FLL 还车后步行/接驳到 Terminal 3",book:["✓ FLL→BOS 机票"],
+  nodes:["mia","fll"],segs:[[9]],
+  links:[["FLL 还车点（地图）", "https://www.google.com/maps/search/?api=1&query=600+Terminal+Dr+Fort+Lauderdale+FL+33315"],["Vizcaya 门票", "https://vizcaya.org"], ["Wynwood Walls 门票", "https://thewynwoodwalls.com"], ["Little Havana · Calle Ocho（地图）", "https://www.google.com/maps/search/?api=1&query=Calle+Ocho+Little+Havana+Miami"]],
+  tips:["Vizcaya 和 Wynwood Walls 都要门票，出发前在官网确认当天开放时间。","想看小浣熊岛（Raccoon Island）的话，可以用上午约 3 小时的船游或划艇团替换 Vizcaya，船游会从海上经过 Vizcaya 等豪宅区。","不想去 Vizcaya 的话，可以换成 South Beach 的 Art Deco 街区和海滩。","租车预订写的是 18:30 还车，但航班 18:40 起飞，实际 16:00 左右就要还。按 24 小时计费，16:00 和 18:30 都在第 7 天里，不改预订也行。","JFK 转机只有 55 分钟，第一段延误的话及时找 JetBlue 改签；到 Boston 已近午夜，提前安排好回家的车。","12 月是石蟹季，午饭可以试试。"]}
 ];
 
 const $ = s=>document.querySelector(s);
@@ -412,21 +413,22 @@ function showTab(t){
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
 
 const BOOK=[
- ["BOS → MCO 机票","最高","12/12","建议早班直飞"],
- ["MIA → BOS 机票","最高","12/21","建议 19:00 以后起飞"],
- ["Key West 酒店","高","12/19–12/20","1 晚；旺季价格容易上涨，确认含停车"],
- ["Orlando 酒店","高","12/12–12/15","对比 Hard Rock / Portofino Bay / Royal Pacific（含两园 Express Unlimited）与普通酒店+单买 Express 的差价"],
+ ["BOS → MCO 机票","最高","12/12","已订 · Frontier F9 1977，11:08 → 14:52 直飞",null,1],
+ ["FLL → BOS 机票","最高","12/21","已订 · JetBlue 2202 FLL 18:40 → JFK 21:34，转 1118 JFK 22:29 → BOS 23:47",null,1],
+ ["Key West 酒店","高","12/19–12/20","已订 · Hyatt Vacation Club at Windward Pointe，$241.82；16:00 入住、10:00 退房；免费取消至 12/18 00:00",null,1],
+ ["Orlando 酒店","高","12/12–12/15","已订 · Hyatt House across from Universal，Studio Kitchen Suite（两张 Queen 床 + 沙发床），Hyatt 免费房券 3 晚",null,1],
  ["Orlando 乐园票","高","12/12–12/14","推荐特价 3 天票：1 天 Epic + 2 天两园 park-to-park，$357 起/人，仅限官网、12/23 前用完；备选 2 天票（1 天两园 park-to-park + 1 天 Epic）","https://www.universalorlando.com"],
  ["Key Largo scuba","高","12/18","有证选 two-tank；无证选 Discover Scuba"],
  ["Biscayne 浮潜团（BNPI）","中高","12/17","选 Convoy Point 出发、3–4h 的浮潜团","https://biscaynenationalparkinstitute.org"],
- ["Orlando → MIA 异地租车","中高","12/15–12/21","D4 取车，D10 MIA 还车；问清 toll 方案"],
- ["Homestead 酒店","中","12/15–12/17","Everglades / Biscayne 之间方便"],
- ["Key Largo 酒店","中","12/17–12/19","潜水前后连续住 2 晚"],
- ["Miami 酒店","中","12/20–12/21","Brickell / Downtown 或 Coral Gables，含停车优先"],
+ ["Orlando → FLL 异地租车","中高","12/15–12/21","已订 · 12/15 09:30 Rosen Centre 1 楼取车，12/21 FLL 还车；实际 16:00 左右还（预订写 18:30，不改也行）",null,1],
+ ["Homestead 酒店","中","12/15–12/17","已订 · Floridian Hotel，$106.60 已付；免费取消至 12/13 12:00",null,1],
+ ["Key Largo 酒店","中","12/17–12/19","已订 · Marina del Mar Resort & Marina，15:00 入住、11:00 退房",null,1],
+ ["Miami 酒店","中","12/20–12/21","已订 · Gables Inn（Coral Gables），$100.57；免费取消至 12/18 18:00",null,1],
  ["Turtle Hospital 导览","中","12/20","订 14:00 场，导览约 90 min","https://www.turtlehospital.org"]
 ];
 let state={};
-try{state=JSON.parse(localStorage.getItem("fl-book-v2")||"{}")||{};}catch(e){state={};}
+try{state=JSON.parse(localStorage.getItem("fl-book-v3")||"{}")||{};}catch(e){state={};}
+BOOK.forEach((b,i)=>{if(b[5]&&!(i in state)) state[i]=true;});
 function renderBook(){
   const ul=$("#blist"); ul.innerHTML="";
   BOOK.forEach(([name,pri,date,note,url],i)=>{
@@ -435,11 +437,11 @@ function renderBook(){
     const li=document.createElement("li");
     li.className="bitem"+(done?" done":"");
     li.innerHTML=`<input type="checkbox" id="b${i}" ${done?"checked":""} aria-label="已预订：${name}">
-      <div><label for="b${i}"><span class="name">${name}</span><br><span class="note">${date} · ${note}</span></label>${url?`<br><a class="blink" href="${url}" target="_blank" rel="noopener">去预订</a>`:""}</div>
+      <div><label for="b${i}"><span class="name">${name}</span><br><span class="note">${date} · ${note}</span></label>${url&&!done?`<br><a class="blink" href="${url}" target="_blank" rel="noopener">去预订</a>`:""}</div>
       <span class="pri ${cls}">${pri}</span>`;
     li.querySelector("input").onchange=e=>{
       state[i]=e.target.checked;
-      try{localStorage.setItem("fl-book-v2",JSON.stringify(state));}catch(err){}
+      try{localStorage.setItem("fl-book-v3",JSON.stringify(state));}catch(err){}
       renderBook();
     };
     ul.appendChild(li);
@@ -450,9 +452,15 @@ function renderBook(){
 }
 renderBook();
 
-const STAYS=[["Orlando","12/12","12/15",3,"#0E3B53"],["Homestead","12/15","12/17",2,"#2F5D46"],["Key Largo","12/17","12/19",2,"#2E8F8A"],["Key West","12/19","12/20",1,"#C9406A"],["Miami","12/20","12/21",1,"#D9772E"]];
-$("#stays").innerHTML=STAYS.map(s=>`<div class="stay" style="grid-column:span ${s[3]};background:${s[4]}">${s[0]}<small>${s[3]} 晚</small></div>`).join("");
-$("#stbody").innerHTML=STAYS.map(s=>`<tr><td>${s[0]}</td><td>${s[1]}</td><td>${s[2]}</td><td>${s[3]}</td></tr>`).join("")+`<tr><td><b>合计</b></td><td></td><td></td><td><b>9</b></td></tr>`;
+const STAYS=[
+ ["Orlando","Hyatt House across from Universal","12/12","12/15",3,"#0E3B53","—"],
+ ["Homestead","Floridian Hotel","12/15 15:00 后","12/17 11:00 前",2,"#2F5D46","12/13 12:00"],
+ ["Key Largo","Marina del Mar Resort & Marina","12/17 15:00","12/19 11:00",2,"#2E8F8A","—"],
+ ["Key West","Hyatt Vacation Club at Windward Pointe","12/19 16:00","12/20 10:00",1,"#C9406A","12/18 00:00"],
+ ["Coral Gables","Gables Inn","12/20","12/21",1,"#D9772E","12/18 18:00"]
+];
+$("#stays").innerHTML=STAYS.map(s=>`<div class="stay" style="grid-column:span ${s[4]};background:${s[5]}">${s[0]}<small>${s[4]} 晚</small></div>`).join("");
+$("#stbody").innerHTML=STAYS.map(s=>`<tr><td>${s[0]}</td><td>${s[1]}</td><td>${s[2]}</td><td>${s[3]}</td><td>${s[4]}</td><td>${s[6]}</td></tr>`).join("")+`<tr><td><b>合计</b></td><td></td><td></td><td></td><td><b>9</b></td><td></td></tr>`;
 
 select(1);
 </script>
